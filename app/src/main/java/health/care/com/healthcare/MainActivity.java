@@ -20,6 +20,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,6 +29,8 @@ import android.widget.Toast;
 import health.care.com.healthcare.NearbyLocations.GMap.ListHealthCenters;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     /** progressDialog variable*/
 
@@ -109,5 +113,6 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
+
 
 }

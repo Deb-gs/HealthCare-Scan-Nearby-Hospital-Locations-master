@@ -52,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                android:alpha=".8"
                 android:src="@drawable/hospital_png_icon_2"/>
 
             <Button
@@ -60,14 +61,14 @@
                 android:layout_height="150dp"
                 android:layout_alignParentStart="true"
 
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="27dp"
                 android:layout_marginTop="450dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
-                android:background="#5F5F5959"
+                android:background="#5FD65353"
                 android:gravity="center"
                 android:text="Find nearby Hospital"
-                android:textColor="#DF3D0A"
+                android:textColor="#982C0A"
                 android:textSize="50dp" />
 
         </RelativeLayout>

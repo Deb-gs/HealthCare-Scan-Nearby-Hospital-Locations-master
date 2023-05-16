@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -32,8 +34,16 @@ public class permission_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permission);
         if(ContextCompat.checkSelfPermission(permission_activity.this, Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
-            startActivity(new Intent(permission_activity.this, Login.class));
-            finish();
+            FirebaseUser currentUser= FirebaseAuth.getInstance().getCurrentUser();
+            if(currentUser!=null){
+                startActivity(new Intent(permission_activity.this, MainActivity.class));
+                finish();
+            }
+            else{
+                startActivity(new Intent(permission_activity.this, Login.class));
+                finish();
+            }
+
             return;
         }
 

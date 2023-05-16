@@ -9,15 +9,18 @@
     android:background="#DBDAD3"
     tools:context=".Splash">
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/hospital_img"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/hospital_on_map"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Avenue of Life"
+        android:id="@+id/txt"
+        android:text="Avenue to Life"
         android:textSize="40sp"
         android:gravity="center"
         android:textStyle="bold"

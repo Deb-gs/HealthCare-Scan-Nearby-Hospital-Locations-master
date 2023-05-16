@@ -20,10 +20,14 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -31,6 +35,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -38,6 +44,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import health.care.com.healthcare.Adapter.CustomPlacesAdapter;
+import health.care.com.healthcare.Contact;
+import health.care.com.healthcare.Login;
 import health.care.com.healthcare.MainActivity;
 import health.care.com.healthcare.NearbyLocations.GeometryController;
 import health.care.com.healthcare.R;
@@ -57,6 +65,8 @@ public class ListHealthCenters extends AppCompatActivity {
     /** location */
     Location location;
 
+    private FirebaseAuth mAuth;
+
     /**
      * onCreate override method calls first when activity start
      * @param savedInstanceState
@@ -66,6 +76,8 @@ public class ListHealthCenters extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_centers_list);
 
+//        log out authentication
+        mAuth = FirebaseAuth.getInstance();
         /** initializing centers list view to show results of nearby hospitals on list */
         centersListView = (ListView) findViewById(R.id.centersListView);
 
@@ -159,6 +171,9 @@ public class ListHealthCenters extends AppCompatActivity {
         });
     }
 
+    String[] ph_no={"9967485996","7854857685","8145673888","8927085963","9879865059","9948677438","9984563425","8945637849","8647285462","7548364638","9967485996","7854857685","8145673888","8927085963","9879865059","9948677438","9984563425","8945637849","8647285462","7548364638","9967485996","7854857685","8145673888","8927085963","9879865059","9948677438","9984563425","8945637849","8647285462","7548364638"};
+
+
     /**
      * listSelection method
      * @param i
@@ -168,8 +183,8 @@ public class ListHealthCenters extends AppCompatActivity {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setCancelable(true);
         dialog.setTitle(GeometryController.detailArrayList.get(i).getHospitalName());
-        dialog.setMessage(GeometryController.detailArrayList.get(i).getAddress());
-        dialog.setIcon(R.drawable.marker);
+        dialog.setMessage(GeometryController.detailArrayList.get(i).getAddress()+"\n"+"Ph No:"+ph_no[i]+"\n\n");
+        dialog.setIcon(R.drawable.baseline_location_on_24);
         dialog.show();
     }
 
@@ -338,5 +353,33 @@ public class ListHealthCenters extends AppCompatActivity {
                 return null;
             }
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.logout_item:
+                logout();
+                return true;
+            case R.id.contact_us_item:
+//                Toast.makeText(this,"Contact to BJS", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(ListHealthCenters.this, Contact.class);
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void logout(){
+        mAuth.signOut();
+        startActivity(new Intent(ListHealthCenters.this, Login.class));
+        Toast.makeText(this, "Log Out Successfully !!!!!!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }
