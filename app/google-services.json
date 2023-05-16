@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "441995507420",
+    "project_id": "avenue-of-life",
+    "storage_bucket": "avenue-of-life.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441995507420:android:afe0af55335bd27196a619",
+        "android_client_info": {
+          "package_name": "health.care.com.healthcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441995507420-imobqgbi1e1tdpg9k2nhtrl1jopkuemj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgKDARvAmd_GyV2E9rijNV_KQLj-Pggks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441995507420-imobqgbi1e1tdpg9k2nhtrl1jopkuemj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
