@@ -13,6 +13,7 @@ package health.care.com.healthcare.NearbyLocations.GMap;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import health.care.com.healthcare.NearbyLocations.GeometryController;
@@ -143,8 +145,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for(int i=0; i<GeometryController.detailArrayList.size(); i++) {
             latLng = new LatLng(GeometryController.detailArrayList.get(i).getGeometry()[0], GeometryController.detailArrayList.get(i).getGeometry()[1]);
             mMap.addMarker(new MarkerOptions().position(latLng).title(GeometryController.detailArrayList.get(i).getHospitalName()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,13));
+//            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,13));
         }
+        latLng=new LatLng(latitude,longitude);
+        mMap.addCircle(new CircleOptions()
+                        .center(latLng)
+                        .radius(5000)
+                        .fillColor(Color.TRANSPARENT)
+                        .strokeColor(Color.GREEN)
+                );
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,13));
     }
 }
